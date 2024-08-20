@@ -23,7 +23,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="pages/charts/chartjs.html">
+        <a class="nav-link" href="{{route('categorie.index')}}">
           <i class="mdi mdi-chart-pie menu-icon"></i>
           <span class="menu-title">Catégorie</span>
         </a>
