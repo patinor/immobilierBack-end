@@ -17,7 +17,7 @@
       </li>
       
       <li class="nav-item">
-        <a class="nav-link" href="pages/forms/basic_elements.html">
+        <a class="nav-link" href="{{route('proprio.index')}}">
           <i class="mdi mdi-view-headline menu-icon"></i>
           <span class="menu-title">Propriétaire</span>
         </a>

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ApiController;
+use App\Http\Controllers\ProprioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('admin.index');
 });
+
+
+Route::resource('proprio',ProprioController::class);
+Route::post('update-proprio/',[ProprioController::class,'update'])->name('update.proprio');
