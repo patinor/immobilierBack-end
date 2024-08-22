@@ -115,53 +115,7 @@
 
   
   <!-- Modal -->
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Ajouter-un-propriétaire</h1>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-        <div class="modal-body">
-            <form action="{{route('proprio.store')}}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Nom</label>
-                  <input type="text" name="nom" value="{{old('nom')}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                </div>
-                <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Prenom</label>
-                  <input type="text" name="prenom" value="{{old('prenom')}}" class="form-control" id="exampleInputPassword1">
-                </div>
 
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Email</label>
-                    <input type="email" name="email" value="{{old('email')}}" class="form-control" id="exampleInputPassword1">
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Tel</label>
-                    <input type="text" name="tel" value="{{old('tel')}}" class="form-control" id="exampleInputPassword1">
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Profile</label>
-                    <input type="file" name="profile" class="form-control" id="exampleInputPassword1">
-                  </div>
-
-
-                  <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Adresse</label>
-                    <input type="text" value="{{old('adresse')}}" name="adresse" class="form-control" id="exampleInputPassword1">
-                  </div>
-               
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </form>
-        </div>
-        
-      </div>
-    </div>
-  </div>
 
    
 @if ($errors->any())
