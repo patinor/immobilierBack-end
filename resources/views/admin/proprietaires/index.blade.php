@@ -27,7 +27,7 @@
 
                   <p class="card-description">
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                        Ajouter-un-propriétaire
+                      Ajouter-un-propriétaire
                       </button>
                   </p>
                   <div class="table-responsive">
@@ -114,9 +114,57 @@
     <!-- Button trigger modal -->
 
   
-  <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title fs-5" id="staticBackdropLabel">Ajouter-un-proprietaie</h4>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+          </div>
+          <div class="modal-body">
+              <form action="{{route('proprio.store')}}" method="POST" enctype="multipart/form-data">
+                  @csrf
+                 
+                  <div class="mb-3">
+                      <label for="exampleInputPassword1" class="form-label">Nom</label>
+                      <input type="text" name="nom"  class="form-control" id="exampleInputPassword1">
+                    </div>
+
+                     
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Prenom</label>
+                    <input type="text" name="prenom"  class="form-control" id="exampleInputPassword1">
+                  </div>
+
+                   
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Email</label>
+                    <input type="email" name="email"  class="form-control" id="exampleInputPassword1">
+                  </div>
+  
+  
+                    
+                    
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Teléphone</label>
+                    <input type="text" name="tel"  class="form-control" id="exampleInputPassword1">
+                  </div>
 
 
+                   
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Profile</label>
+                    <input type="file" name="profile"  class="form-control" id="exampleInputPassword1">
+                  </div>
+                 
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  
    
 @if ($errors->any())
 <div class="alert alert-danger">

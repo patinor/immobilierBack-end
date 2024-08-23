@@ -41,3 +41,5 @@ Route::middleware(['auth.admin'])->group(function(){
 Route::get('login-admin/',[AdminController::class,'login'])->name('admin.login');
 
 Route::post('Authentification-admin/',[AdminController::class,'doLogin'])->name('doLogin.login');
+
+Route::get('listesBienImmoblier',[ApiController::class,'index']);

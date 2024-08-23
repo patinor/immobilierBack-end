@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BienImmobilier;
 use App\Models\Proprietaire;
 use Illuminate\Http\Request;
 
@@ -11,8 +12,15 @@ class ApiController extends Controller
 
     public function index(){
       
-        $user=Proprietaire::all();
-        return  $user;
+        $BienImmobilier=BienImmobilier::with('categorie','proprietaire')->get();
+
+        return $BienImmobilier;
+    }
+
+
+    public function getImage($file){
+
+        
     }
 
 
