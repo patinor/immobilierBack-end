@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\BienImmobilierController;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProprioController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth.admin'])->group(function(){
     Route::resource('proprio',ProprioController::class);
+    Route::resource('client',ClientController::class);
+
     Route::resource('categorie',CategorieController::class);
     Route::resource('bienImmobilier',BienImmobilierController::class);
     Route::get('homeAdmin',[AdminController::class,'home'])->name('home.admin');
@@ -38,8 +41,12 @@ Route::middleware(['auth.admin'])->group(function(){
     Route::post('admin-add-users/',[AdminController::class,'store'])->name('add.admin.users');
     
 });
-Route::get('login-admin/',[AdminController::class,'login'])->name('admin.login');
+Route::get('',[AdminController::class,'login'])->name('admin.login');
 
 Route::post('Authentification-admin/',[AdminController::class,'doLogin'])->name('doLogin.login');
 
 Route::get('listesBienImmoblier',[ApiController::class,'index']);
+
+
+Route::post('RegisterAccount',[ClientController::class,'store']);
+Route::post('client-login',[ClientController::class,'doLogin']);

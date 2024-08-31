@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AddUsersAccountRequest extends FormRequest
+class AddClientAccount extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,26 +22,29 @@ class AddUsersAccountRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'=>'required',
-            'email'=>'required|email|unique:users,email',
-            'tel'=>'required|unique:users,tel',
-            'password'=>'required',
-            'password_confirmation'=>'required',
+            'nom'=>'required',
+            'prenom'=>'required',
+            'email'=>'required|email|unique:clients,email',
+            'tel'=>'required|unique:clients,tel',
+            'piece_identite'=>'required|mimes:pdf',
+            'adresse'=>'required',
         ];
     }
 
 
+    
     public function messages(): array{
 
         return [
-            'name.required'=>'Le nom est requis ! ',
+            'nom.required'=>'Le nom est requis ! ',
+            'prenom.required'=>'Le prenom est requis ! ',
             'email.required'=>'L email est requis !',
             'email.unique'=>'L email doit etre de type unique !',
             'tel.unique'=>'Le numéro de téléphone existe déjà !',
             'tel.required'=>'Le téléphone est requis !!',
             'password.required'=>'Le mot de passe est requis !',
             'password_confirmation.required'=>'Veuillez rentrer la confirmation du mot de passe !',
-
         ];
     }
+
 }

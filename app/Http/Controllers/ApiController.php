@@ -17,11 +17,24 @@ class ApiController extends Controller
         return $BienImmobilier;
     }
 
+    public function getImage($file)
+    {
+        $filePath = 'storage/bien/'. $file;
 
-    public function getImage($file){
-
-        
+         
+        if (!file_exists($filePath)) {
+            return response()->json(['Error' => "Bien non trouvé"], 404);
+        }
+    
+        $image = file_get_contents($filePath);
+    
+        $mimeType = mime_content_type($filePath);
+    
+        return response($image, 200)
+            ->header('Content-Type', $mimeType)
+            ->header('Content-Length', strlen($image));
     }
+    
 
 
     public function store(Request $request){
