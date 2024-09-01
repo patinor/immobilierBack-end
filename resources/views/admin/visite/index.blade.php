@@ -22,80 +22,70 @@
               <div class="card">
                 <div class="card-body">
                    
-                  <h4 class="card-title">Liste des Clients</h4>
+                  <h4 class="card-title">Demandes de visites</h4>
                  
 
                   <p class="card-description">
-                    <a href="  ">
-                    
-                    </a>
+                   
                   </p>
                   <div class="table-responsive">
                     <table class="table table-striped">
                       <thead>
                         <tr>
                           <th>
-                        Nom
+                        Image
                           </th>
                           <th>
-                            Prenom
+                            Nom
+                              </th>
+                          <th>
+                           Email
                           </th>
                           <th>
-                           Téléphone
+                            Tel
                           </th>
+                          
                           <th>
-                            Email
-                          </th>
+                              Status
+                            </th>
+                            <th>
+                              Date
+                            </th>
+                          
                           <th>
-                            Adresse
-                          </th>
-                          <th>
-                           Piece-identité
-                          </th>
-                          <th>
-                            Details
-                          </th>
-                          <th>
-                            Modifier
+                            Valider
                           </th>
                         </tr>
                       </thead>
                       <tbody>
-                         @foreach($clientAll as $client)
+                         @foreach($visiteAll as $visite)
                         <tr>
                           <td class="py-1">
-                            {{$client->nom}}
-
-                          </td>                       
+                            <img src="{{asset('storage/'.$visite->bien_immobilier->image)}}" alt="image"/>
+                          </td>
                           <td>
-                            {{$client->prenom}}
+                           {{$visite->client->nom}}
+                          </td>
+                          <td>
+                            {{$visite->client->email}}
+
 
                           </td>
                           <td>
-                            {{$client->tel}}
-
-                          </td>
-                          <td>
-                            {{$client->email}}
-
-                          </td>
-                          
-                          <td>
-                            {{$client->adresse}}
+                            {{$visite->client->tel}}
 
                           </td>
 
                           <td>
-                            {{$client->adresse}}
+                            {{$visite->status}}
 
                           </td>
                           <td>
-                            <a href="{{route('client.show',$client->id)}}">
-                                <button class="btn btn-info">Show</button>
-                            </a>
+                            {{$visite->date_propose}}
+
                           </td>
                           <td>
-                            <a href="{{route('client.edit',$client->id)}}">
+                            <a href="{{route('details.visite',['id'=>$visite->id])}}">
                                 <button class="btn btn-info">Edit</button>
                             </a>
                           </td>
@@ -105,7 +95,7 @@
                     </table>
                   </div>
                 </div>
-                {{$clientAll->links()}}
+                {{$visiteAll->links()}}
               </div>
             </div>
            
@@ -134,17 +124,8 @@
 
 
    
-@if ($errors->any())
-<div class="alert alert-danger">
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
-@endif
 
-    <!-- page-body-wrapper ends -->
+
   </div>
    @include("admin.pages.js")
 </body>

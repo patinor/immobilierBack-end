@@ -22,7 +22,7 @@
               <div class="card">
                 <div class="card-body">
                    
-                  <h4 class="card-title">Liste des Clients</h4>
+                  <h4 class="card-title">Liste des Locataire</h4>
                  
 
                   <p class="card-description">

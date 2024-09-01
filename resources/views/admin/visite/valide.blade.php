@@ -22,12 +22,12 @@
               <div class="card">
                 <div class="card-body">
                    
-                  <h4 class="card-title">Liste des Clients</h4>
+                  <h4 class="card-title">Demandes de visites</h4>
                  
 
                   <p class="card-description">
-                    <a href="  ">
-                    
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <button class="btn btn-info">Valider</button>
                     </a>
                   </p>
                   <div class="table-responsive">
@@ -35,77 +35,60 @@
                       <thead>
                         <tr>
                           <th>
-                        Nom
+                        Image
                           </th>
                           <th>
-                            Prenom
+                            Nom
+                              </th>
+                          <th>
+                           Email
                           </th>
                           <th>
-                           Téléphone
+                            Tel
                           </th>
+                          
                           <th>
-                            Email
-                          </th>
-                          <th>
-                            Adresse
-                          </th>
-                          <th>
-                           Piece-identité
-                          </th>
-                          <th>
-                            Details
-                          </th>
-                          <th>
-                            Modifier
-                          </th>
+                              Status
+                            </th>
+                            <th>
+                              Date
+                            </th>
+                          
+                         
                         </tr>
                       </thead>
                       <tbody>
-                         @foreach($clientAll as $client)
                         <tr>
                           <td class="py-1">
-                            {{$client->nom}}
-
-                          </td>                       
+                            <img src="{{asset('storage/'.$visite->bien_immobilier->image)}}" alt="image"/>
+                          </td>
                           <td>
-                            {{$client->prenom}}
+                           {{$visite->client->nom}}
+                          </td>
+                          <td>
+                            {{$visite->client->email}}
+
 
                           </td>
                           <td>
-                            {{$client->tel}}
-
-                          </td>
-                          <td>
-                            {{$client->email}}
-
-                          </td>
-                          
-                          <td>
-                            {{$client->adresse}}
+                            {{$visite->client->tel}}
 
                           </td>
 
                           <td>
-                            {{$client->adresse}}
+                            {{$visite->status}}
 
                           </td>
                           <td>
-                            <a href="{{route('client.show',$client->id)}}">
-                                <button class="btn btn-info">Show</button>
-                            </a>
+                            {{$visite->date_propose}}
+
                           </td>
-                          <td>
-                            <a href="{{route('client.edit',$client->id)}}">
-                                <button class="btn btn-info">Edit</button>
-                            </a>
-                          </td>
+                         
                         </tr>
-                        @endforeach
                       </tbody>
                     </table>
                   </div>
                 </div>
-                {{$clientAll->links()}}
               </div>
             </div>
            
@@ -134,17 +117,43 @@
 
 
    
-@if ($errors->any())
-<div class="alert alert-danger">
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
-@endif
+<!-- Button trigger modal -->
 
-    <!-- page-body-wrapper ends -->
+  
+  <!-- Modal -->
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Date-visite</h1>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        </div>
+        <div class="modal-body">
+          <form action="{{route('valideVisite.demande')}}" method="POST">
+            @csrf
+            <div class="row g-3 align-items-center">
+              <div class="col-auto">
+                <label for="inputDate" class="col-form-label">Date-visites</label>
+              </div>
+              <div class="col-auto">
+                <input type="date" name="date_visite" id="inputDate" class="form-control" required>
+              </div>
+              <input type="hidden" name="id" value="{{$visite->id}}">
+            </div>
+  
+            <!-- Submit button -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+              <button type="submit" class="btn btn-primary">Valider</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
   </div>
    @include("admin.pages.js")
 </body>

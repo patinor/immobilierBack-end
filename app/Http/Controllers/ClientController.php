@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AddClientAccount;
+use App\Models\BienImmobilier;
 use App\Models\Client;
+use App\Models\Visite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -40,7 +42,7 @@ class ClientController extends Controller
         $client->nom=$request->nom;
         $client->prenom=$request->prenom;
         $client->email=$request->email;
-        $client->adresse=$request->adresse;
+        $client->adresse=$request->adresse ?:'';
         $client->tel=$request->tel;
         $client->password=Hash::make($request->password);
 
@@ -94,16 +96,34 @@ class ClientController extends Controller
                         ->first();
     
         if (!$client) {
-            return response()->json(['message' => 'Information incorrecte']);
+            return response()->json(['error' => 'Information incorrecte']);
         }
     
         if (!Hash::check($request->password, $client->password)) {
-            return response()->json(['message' => 'Information incorrecte']);
+            return response()->json(['error' => 'Information incorrecte']);
         }
     
-        $hash = Hash::make($client->email);
-        session()->put(['token_oat' => $hash]);
-        return response()->json(['message' => 'Utilisateur trouvé']);
+        session()->put(['client' => $client->id]);
+
+        return response()->json(['message' => $client->id]);
     }
     
+
+    public function visiteClient(Request $request){
+
+        $client=Client::find($request->client_id);
+        $bien=BienImmobilier::find($request->bien_id);
+
+        if(!$client &&  !$bien ){
+            return response()->json(['error' => 'Veuillez remplir tous les champs 2 !']);
+        }
+        $visite= new Visite();
+        $visite->client_id=$client->id;
+        $visite->bien_immobilier_id=$bien->id;
+        $visite->date_propose=$request->date_propose;
+        $visite->status='En-cours';
+        $visite->save();
+        return response()->json(['message' => 'Demande envoyé avec succes !']);
+
+    }
 }

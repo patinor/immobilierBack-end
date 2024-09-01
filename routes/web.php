@@ -6,6 +6,7 @@ use App\Http\Controllers\BienImmobilierController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProprioController;
+use App\Http\Controllers\VisiteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,3 +51,7 @@ Route::get('listesBienImmoblier',[ApiController::class,'index']);
 
 Route::post('RegisterAccount',[ClientController::class,'store']);
 Route::post('client-login',[ClientController::class,'doLogin']);
+Route::post('visite-client',[ClientController::class,'visiteClient']);
+Route::get('listes-demande-visites',[VisiteController::class,'index'])->name('demande.visite');
+Route::get('listes-details-ventes/{id}',[VisiteController::class,'edit'])->name('details.visite');
+Route::post('valide-demande-visites',[VisiteController::class,'valideVisite'])->name('valideVisite.demande');
